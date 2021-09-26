@@ -10,7 +10,7 @@ export const searchRepositories = (term: string) => {
     });
 
     try {
-      const {data} = await axios.get<RepositoriesResponse>('https://registry.npmjs.org/-/v1/search?text=react', {
+      const {data} = await axios.get<RepositoriesResponse>('https://registry.npmjs.org/-/v1/search', {
         params: {
           text: term
         }
@@ -37,19 +37,19 @@ export const searchRepositories = (term: string) => {
   };
 };
 
-export interface RepositoriesResponse {
+interface RepositoriesResponse {
   objects: Object[];
   total: number;
   time: string;
 }
 
-export interface Object {
+interface Object {
   package: Package;
   score: Score;
   searchScore: number;
 }
 
-export interface Package {
+interface Package {
   name: string;
   scope: Scope;
   version: string;
@@ -62,35 +62,35 @@ export interface Package {
   author?: Author;
 }
 
-export interface Author {
+interface Author {
   name: string;
   email?: string;
   username?: string;
   url?: string;
 }
 
-export interface Links {
+interface Links {
   npm: string;
   homepage: string;
   repository: string;
   bugs: string;
 }
 
-export interface Publisher {
+interface Publisher {
   username: string;
   email: string;
 }
 
-export enum Scope {
+ enum Scope {
   Unscoped = 'unscoped',
 }
 
-export interface Score {
+interface Score {
   final: number;
   detail: Detail;
 }
 
-export interface Detail {
+interface Detail {
   quality: number;
   popularity: number;
   maintenance: number;
